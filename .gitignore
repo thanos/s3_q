@@ -1,0 +1,15 @@
+# Rust
+/target/
+
+
+# IDE-specific files (common examples)
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+
+# Operating System specific files
+.env
+.env.*
+.tool-versions
