@@ -6,19 +6,19 @@ use object_store::aws::S3ConditionalPut;
 
 #[tokio::main]
 async fn main() -> Result<(), SlateDBError> {
-    // let object_store: Arc<dyn ObjectStore> = Arc::new(InMemory::new());
-    let object_store = Arc::new(
-        object_store::aws::AmazonS3Builder::new()
-            // These will be different if you are using real AWS
-            .with_allow_http(true)
-            .with_endpoint("http://localhost:4566")
-            .with_access_key_id("test")
-            .with_secret_access_key("test")
-            .with_bucket_name("slatedb")
-            .with_region("us-east-1")
-            .with_conditional_put(S3ConditionalPut::ETagMatch)
-            .build()?,
-    );
+    let object_store: Arc<dyn ObjectStore> = Arc::new(InMemory::new());
+    // let object_store = Arc::new(
+    //     object_store::aws::AmazonS3Builder::new()
+    //         // These will be different if you are using real AWS
+    //         .with_allow_http(true)
+    //         .with_endpoint("http://localhost:4566")
+    //         .with_access_key_id("test")
+    //         .with_secret_access_key("test")
+    //         .with_bucket_name("slatedb")
+    //         .with_region("us-east-1")
+    //         .with_conditional_put(S3ConditionalPut::ETagMatch)
+    //         .build()?,
+    // );
     let db = Db::open("test_db", object_store).await?;
 
     let value = vec![0u8; 4096];
